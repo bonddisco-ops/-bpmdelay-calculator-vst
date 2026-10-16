@@ -40,7 +40,7 @@ DelayCalcEditor::DelayCalcEditor (DelayCalcProcessor& p)
 
     bpmBox.setText ("128", false);
     bpmBox.setInputRestrictions (6, "0123456789.");
-    bpmBox.setFont (juce::Font (juce::FontOptions (44.0f, juce::Font::bold)));
+    bpmBox.setFont (juce::Font (44.0f, juce::Font::bold));
     bpmBox.setJustification (juce::Justification::centredLeft);
     bpmBox.setColour (juce::TextEditor::backgroundColourId, kPanel);
     bpmBox.setColour (juce::TextEditor::textColourId, kInk);
@@ -136,12 +136,8 @@ void DelayCalcEditor::paint (juce::Graphics& g)
     g.fillAll (kBg);
 
     g.setColour (kInk);
-    g.setFont (juce::Font (juce::FontOptions (20.0f, juce::Font::bold)));
+    g.setFont (juce::Font (20.0f, juce::Font::bold));
     g.drawText ("Delay Calculator", 16, 10, 300, 28, juce::Justification::centredLeft);
-
-    g.setColour (kMute);
-    g.setFont (14.0f);
-    g.drawText ("BPM", 190, 44, 0, 0, juce::Justification::centredLeft);
 
     const int left = 16, labelW = 110, tableTop = 152, headerH = 24, rowH = 42;
     const int colW = (getWidth() - 32 - labelW) / 3;
@@ -175,7 +171,7 @@ void DelayCalcEditor::paint (juce::Graphics& g)
 
         const bool quarter = (mode == 0 && n == 4.0);
         g.setColour (quarter ? kAcc : kInk);
-        g.setFont (juce::Font (juce::FontOptions (17.0f, juce::Font::bold)));
+        g.setFont (juce::Font (17.0f, juce::Font::bold));
         g.drawText (noteLabel (n), left + 8, y, labelW, rowH - 2, juce::Justification::centredLeft);
 
         for (int c = 0; c < 3; ++c)
@@ -186,7 +182,7 @@ void DelayCalcEditor::paint (juce::Graphics& g)
             juce::Rectangle<int> r (left + labelW + c * colW, y, colW, rowH - 2);
 
             g.setColour (kInk);
-            g.setFont (juce::Font (juce::FontOptions (16.0f)));
+            g.setFont (juce::Font (16.0f));
             g.drawText (num + (useHz ? " Hz" : " ms"), r.withTrimmedRight (12), juce::Justification::centredRight);
 
             cells.push_back ({ r, num });
