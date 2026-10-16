@@ -2,6 +2,17 @@
 #include <juce_audio_utils/juce_audio_utils.h>
 #include <atomic>
 
+// Writes a line to Documents/DelayCalculator-log.txt.
+// Used only on the UI thread, to see the last action before a crash.
+inline void dlog (const juce::String& message)
+{
+    auto file = juce::File::getSpecialLocation (juce::File::userDocumentsDirectory)
+                    .getChildFile ("DelayCalculator-log.txt");
+    if (file.getSize() > 200000)
+        file.deleteFile();
+    file.appendText (juce::Time::getCurrentTime().toString (true, true, true, true) + "  " + message + "\n");
+}
+
 class DelayCalcProcessor : public juce::AudioProcessor
 {
 public:

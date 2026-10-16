@@ -18,8 +18,6 @@ bool DelayCalcProcessor::isBusesLayoutSupported (const BusesLayout& layouts) con
 
 void DelayCalcProcessor::processBlock (juce::AudioBuffer<float>&, juce::MidiBuffer&)
 {
-    juce::ScopedNoDenormals noDenormals;
-
     // Audio passes through untouched. We only read the tempo.
     if (auto* ph = getPlayHead())
         if (auto pos = ph->getPosition())
